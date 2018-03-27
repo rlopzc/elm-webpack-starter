@@ -1,0 +1,52 @@
+{
+  "name": "elm-webpack-4-starter",
+  "version": "0.0.1",
+  "description": "Elm starter template with webpack 4",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/romariolopezc/elm-webpack-4-starter"
+  },
+  "contributors": [
+    "Romario Lopez <romariolopezc@gmail.com>",
+    "Geoffrey Roguelon <geoffrey.roguelon@gmail.com>"
+  ],
+  "scripts": {
+    "start": "webpack-dev-server --hot",
+    "prebuild": "rimraf dist",
+    "build": "webpack",
+    "reinstall": "npm i --no-save rimraf && rimraf node_modules && yarn global add elm && yarn && elm package install"
+  },
+  "license": "MIT",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "devDependencies": {
+    "autoprefixer": "^8.2.0",
+    "bootstrap": "^4.0.0",
+    "compression-webpack-plugin": "^1.1.11",
+    "copy-webpack-plugin": "^4.5.1",
+    "css-loader": "^0.28.11",
+    "cssnano": "^3.10.0",
+    "elm": "^0.18.0",
+    "elm-hot-loader": "^0.5.4",
+    "elm-webpack-loader": "^4.5.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.0.6",
+    "jquery": "^3.3.1",
+    "node-sass": "^4.7.2",
+    "popper.js": "^1.14.1",
+    "postcss-loader": "^2.1.3",
+    "rimraf": "^2.6.2",
+    "sass-loader": "^6.0.7",
+    "style-loader": "^0.20.3",
+    "stylelint": "^9.1.3",
+    "stylelint-config-standard": "^18.2.0",
+    "uglifyjs-webpack-plugin": "^1.2.4",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12",
+    "webpack-dev-server": "^3.1.1",
+    "webpack-merge": "^4.1.2"
+  }
+}
