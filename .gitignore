@@ -4,3 +4,4 @@ package-lock.json
 elm-stuff
 *.log
 dist
+yarn.lock
