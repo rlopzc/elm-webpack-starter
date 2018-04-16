@@ -9,7 +9,7 @@ A Webpack 4 setup for writing [Elm](http://elm-lang.org/) apps:
   * CSS/SCSS with postcss
     * Autoprefixer
     * Css nano (minifier)
-* Bootstrap 4 (Sass version)
+* Bootstrap 4.1 (Sass version)
 * Bundling and minification for deployment with [compressed version of assets](https://github.com/webpack-contrib/compression-webpack-plugin) (gzip)
 * Examples (examples/)
   - Hello world

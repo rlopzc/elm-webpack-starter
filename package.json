@@ -23,7 +23,7 @@
   ],
   "devDependencies": {
     "autoprefixer": "^8.2.0",
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.1.0",
     "compression-webpack-plugin": "^1.1.11",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
