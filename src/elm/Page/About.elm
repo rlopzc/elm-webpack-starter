@@ -3,7 +3,7 @@ module Page.About exposing (view, update, Model, Msg, init)
 import Html exposing (..)
 
 
----- MODEL ----
+-- MODEL --
 
 
 type alias Model =

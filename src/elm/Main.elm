@@ -12,7 +12,7 @@ import View.Page as Page exposing (ActivePage)
 import Util exposing ((=>))
 
 
----- MODEL ----
+-- MODEL --
 
 
 type alias Model =
@@ -29,7 +29,7 @@ type Page
 
 
 
----- UPDATE ----
+-- UPDATE --
 
 
 type Msg
@@ -90,7 +90,7 @@ updatePage page msg model =
 
 
 
----- VIEW ----
+-- VIEW --
 
 
 view : Model -> Html Msg
@@ -125,7 +125,7 @@ view model =
 
 
 
----- SUBSCRIPTIONS ----
+-- SUBSCRIPTIONS --
 
 
 subscriptions : Model -> Sub Msg
@@ -134,7 +134,7 @@ subscriptions model =
 
 
 
----- PROGRAM ----
+-- PROGRAM --
 
 
 initialPage : Page
