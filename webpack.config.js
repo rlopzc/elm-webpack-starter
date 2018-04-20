@@ -6,6 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CompressionPlugin = require("compression-webpack-plugin")
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 const prod = 'production';
 const dev = 'development';
@@ -44,8 +45,8 @@ const commonConfig = {
         test: /\.(eot|ttf|woff|woff2|svg)$/,
         use: 'file-loader?publicPath=../../&name=static/css/[hash].[ext]',
       },
-    ]
-  },
+   ]
+      },
 
   plugins: [
     new HtmlWebpackPlugin({
@@ -59,6 +60,7 @@ const commonConfig = {
       'window.jQuery': 'jquery',
       Popper: 'popper',
     }),
+    new StyleLintPlugin(),
   ]
 };
 
