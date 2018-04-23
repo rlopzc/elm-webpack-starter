@@ -22,7 +22,7 @@ const isProd = TARGET_ENV === prod;
 // entry and output path/filename variables
 const entryPath = path.join(__dirname, 'src/static/index.js');
 const outputPath = path.join(__dirname, 'dist');
-const outputFilename = isProd ? '[name]-[hash].js' : '[name].js';
+const outputFilename = isProd ? '[name].[hash].js' : '[name].js';
 
 console.log(`Building for ${TARGET_ENV}`);
 
@@ -135,7 +135,7 @@ if (isProd) {
 
     plugins: [
       new ExtractTextPlugin({
-        filename: 'static/css/[name]-[hash].css',
+        filename: 'static/css/[name].[hash].css',
         allChunks: true
       }),
 
