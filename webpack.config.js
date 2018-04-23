@@ -1,4 +1,5 @@
 const path = require('path');
+const glob = require('glob');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -7,6 +8,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CompressionPlugin = require("compression-webpack-plugin")
 const StyleLintPlugin = require('stylelint-webpack-plugin');
+const PurifyCSSPlugin = require('purifycss-webpack');
 
 const prod = 'production';
 const dev = 'development';
@@ -135,6 +137,15 @@ if (isProd) {
       new ExtractTextPlugin({
         filename: 'static/css/[name]-[hash].css',
         allChunks: true
+      }),
+
+      new PurifyCSSPlugin({
+        // Give paths to parse for rules. These should be absolute!
+        paths: glob.sync(path.join(__dirname, 'src/**/*.elm')),
+        purifyOptions: {
+          minify: true
+        },
+        verbose: true
       }),
 
       new CopyWebpackPlugin([
