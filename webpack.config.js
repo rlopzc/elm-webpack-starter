@@ -48,7 +48,7 @@ const commonConfig = {
         use: 'file-loader?publicPath=../../&name=static/css/[hash].[ext]',
       },
    ]
-      },
+  },
 
   plugins: [
     new HtmlWebpackPlugin({
@@ -56,13 +56,19 @@ const commonConfig = {
       inject: 'body',
       filename: 'index.html',
     }),
+
     new webpack.ProvidePlugin({ //Delete this plugin if you don't need jQuery/Bootstrap
       $: 'jquery',
       jQuery: 'jquery',
       'window.jQuery': 'jquery',
       Popper: 'popper',
     }),
+
     new StyleLintPlugin(),
+
+    new CopyWebpackPlugin([
+      { from: 'src/static/favicon.ico' }
+    ]),
   ]
 };
 
@@ -150,7 +156,6 @@ if (isProd) {
 
       new CopyWebpackPlugin([
         { from: 'src/static/img', to: 'static/img' },
-        { from: 'src/static/favicon.ico' }
       ]),
 
       new UglifyJsPlugin(),
