@@ -8,7 +8,8 @@ A Webpack 4 setup for writing [Elm](http://elm-lang.org/) apps:
   * Images
   * CSS/SCSS with postcss
     * Autoprefixer
-    * Css nano (minifier)
+    * [PurifyCSS](https://github.com/purifycss/purifycss) to remove unused CSS
+    * CSS minification
 * Bootstrap 4.1 (Sass version)
 * Bundling and minification for deployment with [compressed version of assets](https://github.com/webpack-contrib/compression-webpack-plugin) (gzip)
 * Examples (examples/)
