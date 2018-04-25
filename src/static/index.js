@@ -1,3 +1,6 @@
+// Webpack offline plugin
+require('offline-plugin/runtime').install();
+
 // Styles
 require('./styles/main.scss');
 

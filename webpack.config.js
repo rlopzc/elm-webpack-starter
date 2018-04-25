@@ -7,6 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CompressionPlugin = require("compression-webpack-plugin")
+const OfflinePlugin = require('offline-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
 const DashboardPlugin = require('webpack-dashboard/plugin');
@@ -167,6 +168,8 @@ if (isProd) {
       new UglifyJsPlugin(),
 
       new CompressionPlugin(),
+
+      new OfflinePlugin(),
 
       new BundleAnalyzerPlugin(),
     ]
