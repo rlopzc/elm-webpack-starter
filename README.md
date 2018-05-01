@@ -17,6 +17,7 @@ A Webpack 4 setup for writing [Elm](http://elm-lang.org/) apps:
   - Hello world
   - Counter
 * App scaffold using Richard Feldman [RealWorld example app](https://github.com/rtfeldman/elm-spa-example) and this [template](https://github.com/simon-larsson/elm-spa-template).
+* [Webpack bundle analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) to visualize the outputted files
 
 
 ### Requirements:
