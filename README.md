@@ -4,10 +4,11 @@
 A Webpack 4 setup for writing [Elm](http://elm-lang.org/) apps:
 
 * Dev server with live reloading, using HMR
+* [Webpack dashboard](https://github.com/FormidableLabs/webpack-dashboard) to have more info about the dev-server
 * Support assets
   * Images
-  * CSS/SCSS with postcss
-    * Autoprefixer
+  * CSS/SCSS
+    * PostCSS with Autoprefixer
     * [PurifyCSS](https://github.com/purifycss/purifycss) to remove unused CSS
     * CSS minification
 * Bootstrap 4.1 (Sass version)
