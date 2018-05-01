@@ -9,6 +9,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CompressionPlugin = require("compression-webpack-plugin")
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 const prod = 'production';
 const dev = 'development';
@@ -106,6 +107,10 @@ if (isDev) {
         }
       ]
     },
+
+    plugins: [
+      new DashboardPlugin(),
+    ],
 
     devServer: {
       historyApiFallback: true,
