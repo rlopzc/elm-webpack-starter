@@ -10,6 +10,7 @@ const CompressionPlugin = require("compression-webpack-plugin")
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const prod = 'production';
 const dev = 'development';
@@ -166,6 +167,8 @@ if (isProd) {
       new UglifyJsPlugin(),
 
       new CompressionPlugin(),
+
+      new BundleAnalyzerPlugin(),
     ]
   });
 }
