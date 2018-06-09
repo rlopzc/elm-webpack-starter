@@ -1,4 +1,4 @@
-module Page.About exposing (view, update, Model, Msg, init)
+module Page.About exposing (Model, Msg, init, update, view)
 
 import Html exposing (..)
 
