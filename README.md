@@ -5,6 +5,7 @@ A Webpack 4 setup for writing [Elm](http://elm-lang.org/) apps:
 
 * Dev server with live reloading, using HMR
 * [Webpack dashboard](https://github.com/FormidableLabs/webpack-dashboard) to have more info about the dev-server
+* [Elm Analyse](https://github.com/stil4m/elm-analyse). Tool to identify Elm code deficiencies and best practices
 * Support assets
   * Images
   * CSS/SCSS
@@ -48,21 +49,27 @@ yarn reinstall
 
 
 ### Serve locally:
-```
+```sh
 yarn start
 ```
 * Access app at `http://localhost:8080/`
 * Get coding! The entry point file is `src/elm/Main.elm`
 * Browser will refresh automatically on any file changes, including css.
 
+To analyse your elm code, look for deficiencies and apply best practices, use:
+```sh
+yarn elm-analyse
+```
+* Access the web client at `http://localhost:3000`
 
-### Build & bundle for prod:
+### Build & bundle for production:
 ```
 yarn build
 ```
 
 * Files are saved into the `/dist` folder
 * To check it, open `dist/index.html`
+* It will also prepare the assets by compressing the files with gzip.
 
 ### Contributing
 - PR's welcome :)
