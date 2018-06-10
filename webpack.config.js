@@ -169,9 +169,14 @@ if (isProd) {
 
       new CompressionPlugin(),
 
-      new OfflinePlugin(),
-
       new BundleAnalyzerPlugin(),
+
+      new OfflinePlugin({
+        externals: [
+          '/'
+        ],
+        appShell: '/',
+      }),
     ]
   });
 }
