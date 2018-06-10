@@ -1,13 +1,13 @@
-module Main exposing (..)
+module Main exposing (main)
 
-import Html exposing (..)
-import Json.Decode as Decode exposing (Value)
+import Html exposing (Html)
+import Json.Decode exposing (Value)
 import Navigation exposing (Location)
 import Page.About as About
 import Page.Error as Error exposing (PageLoadError)
 import Page.Home as Home
 import Page.NotFound as NotFound
-import Route exposing (..)
+import Route exposing (Route)
 import Task
 import Util exposing ((=>))
 import View.Page as Page exposing (ActivePage)

@@ -1,7 +1,7 @@
 module View.Page exposing (ActivePage(..), layout)
 
-import Html exposing (..)
-import Html.Attributes exposing (attribute, class, classList, href, id, placeholder, type_)
+import Html exposing (Html, a, button, div, footer, li, nav, span, text, ul)
+import Html.Attributes exposing (attribute, class, classList, id, placeholder, type_)
 import Route exposing (Route)
 
 
