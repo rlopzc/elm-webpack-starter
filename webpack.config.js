@@ -172,6 +172,7 @@ if (isProd) {
       new BundleAnalyzerPlugin(),
 
       new OfflinePlugin({
+        excludes: ['**/*.map'],
         externals: [
           '/'
         ],
