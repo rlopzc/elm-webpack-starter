@@ -3,7 +3,7 @@ const glob = require('glob');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CompressionPlugin = require("compression-webpack-plugin")
@@ -136,19 +136,21 @@ if (isProd) {
           use: 'elm-webpack-loader'
         },
         {
-          test: /\.s?css$/,
-          use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: ['css-loader', 'postcss-loader', 'sass-loader']
-          })
+          test: /\.(sa|sc|c)ss$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            'css-loader',
+            'postcss-loader',
+            'sass-loader',
+          ],
         }
       ]
     },
 
     plugins: [
-      new ExtractTextPlugin({
+      new MiniCssExtractPlugin({
         filename: 'static/css/[name].[hash].css',
-        allChunks: true
+        chunkFilename: '[id].[hash].css',
       }),
 
       new PurifyCSSPlugin({
