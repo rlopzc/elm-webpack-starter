@@ -3,7 +3,6 @@ const glob = require('glob');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const CompressionPlugin = require("compression-webpack-plugin")
 const PurifyCSSPlugin = require('purifycss-webpack');
 
 module.exports = () => ({
@@ -50,7 +49,5 @@ module.exports = () => ({
     ]),
 
     new UglifyJsPlugin(),
-
-    new CompressionPlugin(),
   ]
 });
