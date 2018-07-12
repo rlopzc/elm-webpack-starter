@@ -8,6 +8,7 @@ A Webpack 4 setup for writing [Elm](http://elm-lang.org/) apps:
 * [Elm Analyse](https://github.com/stil4m/elm-analyse). Tool to identify Elm code deficiencies and best practices
 * Support assets
   * Images
+    * Compression of images copied by `copy-webpack-plugin`
   * CSS/SCSS
     * PostCSS with Autoprefixer
     * [PurifyCSS](https://github.com/purifycss/purifycss) to remove unused CSS

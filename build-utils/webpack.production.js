@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const PurifyCSSPlugin = require('purifycss-webpack');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 module.exports = () => ({
   output: {
@@ -47,6 +48,8 @@ module.exports = () => ({
     new CopyWebpackPlugin([
       { from: 'src/static/img', to: 'static/img' },
     ]),
+
+    new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
 
     new UglifyJsPlugin(),
   ]
