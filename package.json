@@ -14,6 +14,7 @@
     "webpack": "webpack",
     "webpack-dev-server": "webpack-dev-server",
     "prod": "npm run webpack -- --env.mode production",
+    "prod:analyze": "npm run prod -- --env.presets analyze",
     "dev": "webpack-dashboard --title 'Elm Dev Server' -- npm run webpack-dev-server -- --env.mode development --hot",
     "elm-analyse": "elm-analyse -s -o",
     "preprod": "rimraf dist",

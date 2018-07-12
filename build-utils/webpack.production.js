@@ -5,7 +5,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CompressionPlugin = require("compression-webpack-plugin")
 const PurifyCSSPlugin = require('purifycss-webpack');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = () => ({
   output: {
@@ -53,7 +52,5 @@ module.exports = () => ({
     new UglifyJsPlugin(),
 
     new CompressionPlugin(),
-
-    new BundleAnalyzerPlugin(),
   ]
 });
