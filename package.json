@@ -11,10 +11,14 @@
     "Geoffrey Roguelon <geoffrey.roguelon@gmail.com>"
   ],
   "scripts": {
-    "start": "webpack-dashboard --title 'Elm Dev Server' -- webpack-dev-server --hot",
+    "webpack": "webpack",
+    "webpack-dev-server": "webpack-dev-server",
+    "prod": "npm run webpack -- --env.mode production",
+    "prod:analyze": "npm run prod -- --env.presets analyze",
+    "prod:compress": "npm run prod -- --env.presets compress",
+    "dev": "webpack-dashboard --title 'Elm Dev Server' -- npm run webpack-dev-server -- --env.mode development --hot",
     "elm-analyse": "elm-analyse -s -o",
-    "prebuild": "rimraf dist",
-    "build": "webpack",
+    "preprod": "rimraf dist",
     "lint": "stylelint src/static/styles",
     "reinstall": "npm i --no-save rimraf && rimraf node_modules && yarn global add elm && yarn && elm package install"
   },
