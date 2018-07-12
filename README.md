@@ -50,7 +50,7 @@ yarn reinstall
 
 ### Serve locally:
 ```sh
-yarn start
+yarn dev
 ```
 * Access app at `http://localhost:8080/`
 * Get coding! The entry point file is `src/elm/Main.elm`
@@ -63,22 +63,27 @@ yarn elm-analyse
 * Access the web client at `http://localhost:3000`
 
 ### Build & bundle for production:
+
+There are presets related to production.
+Presets:
+  - `compress`: Use WebpackCompressionPlugin
+  - `analyze`:  Use WebpackBundleAnalyzer
+
+```sh
+$ yarn prod
+$ yarn prod:<preset>
+$ yarn prod:compress
+$ yarn prod:analyze
 ```
-yarn build
-```
+You can add your own presets to test functionality without breaking the working build.
 
 * Files are saved into the `/dist` folder
 * To check it, open `dist/index.html`
-* It will also prepare the assets by compressing the files with gzip.
 
 ### Contributing
 - PR's welcome :)
 
 ### Notes
 * This webpack template was heavily inspired in the Elm Community [elm-webpack-starter](https://github.com/elm-community/elm-webpack-starter).
+* The webpack build-utils and preset pattern was taken from the FrontendMasters course [Webpack fundamentals](https://frontendmasters.com/courses/webpack-fundamentals/)
 * If jQuery not needed, delete Popper.js and jQuery from webpack.config.js
-
-### Changelog
-
-**Ver 0.0.1**
-* Initial commit
