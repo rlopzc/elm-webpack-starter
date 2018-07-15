@@ -25,6 +25,7 @@ A Webpack 4 setup for writing [Elm](http://elm-lang.org/) apps:
 ### Requirements:
 - [Yarn](https://yarnpkg.com/lang/en/docs/install/)
 - Node >= v6.11
+- [Elm](https://guide.elm-lang.org/install.html)
 
 ### Install:
 
@@ -42,9 +43,10 @@ git add .
 git commit -m 'initial commit'
 ```
 
-Install all dependencies using the handy `reinstall` script:
+Install all dependencies using this commands:
 ```
-yarn reinstall
+yarn install
+elm-package install
 ```
 *This does a clean (re)install of all npm and elm packages, plus a global elm install.*
 
@@ -71,10 +73,10 @@ Presets:
   - `analyze`:  Use WebpackBundleAnalyzer
 
 ```sh
-$ yarn prod
-$ yarn prod:<preset>
-$ yarn prod:compress
-$ yarn prod:analyze
+yarn prod
+yarn prod:<preset> # <- This is the pattern for the presets, defined in package.json
+yarn prod:compress
+yarn prod:analyze
 ```
 You can add your own presets to test functionality without breaking the working build.
 
