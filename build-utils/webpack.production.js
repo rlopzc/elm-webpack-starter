@@ -5,6 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const PurifyCSSPlugin = require('purifycss-webpack');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = () => ({
   output: {
@@ -39,10 +40,7 @@ module.exports = () => ({
     new PurifyCSSPlugin({
       // Give paths to parse for rules. These should be absolute!
       paths: glob.sync(path.join(__dirname, '../src/**/*.elm')),
-      purifyOptions: {
-        minify: true
-      },
-      verbose: true
+      verbose: true,
     }),
 
     new CopyWebpackPlugin([
@@ -51,6 +49,11 @@ module.exports = () => ({
 
     new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
 
-    new UglifyJsPlugin(),
+    new UglifyJsPlugin({
+      cache: true,
+      parallel: true,
+    }),
+
+    new OptimizeCSSAssetsPlugin()
   ]
 });
