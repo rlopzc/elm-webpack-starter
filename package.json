@@ -27,13 +27,13 @@
     "last 2 versions"
   ],
   "devDependencies": {
-    "autoprefixer": "^8.2.0",
+    "autoprefixer": "^9.1.0",
     "bootstrap": "^4.1.0",
     "compression-webpack-plugin": "^1.1.11",
     "copy-webpack-plugin": "^4.5.1",
-    "css-loader": "^0.28.11",
+    "css-loader": "^1.0.0",
     "elm": "^0.18.0",
-    "elm-analyse": "^0.14.2",
+    "elm-analyse": "^0.15.0",
     "elm-hot-loader": "^0.5.4",
     "elm-webpack-loader": "^4.5.0",
     "file-loader": "^1.1.11",
