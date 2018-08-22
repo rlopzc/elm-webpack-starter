@@ -6,6 +6,7 @@ import Navigation exposing (Location)
 import UrlParser as Url exposing (Parser, oneOf, parseHash, s)
 
 
+
 -- ROUTING --
 
 
@@ -70,5 +71,6 @@ fromLocation : Location -> Maybe Route
 fromLocation location =
     if String.isEmpty location.hash then
         Just Home
+
     else
         parseHash routeMatcher location

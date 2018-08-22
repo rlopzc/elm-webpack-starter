@@ -32,7 +32,6 @@
     "compression-webpack-plugin": "^1.1.11",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^1.0.0",
-    "elm": "^0.18.0",
     "elm-analyse": "^0.15.0",
     "elm-hot-loader": "^0.5.4",
     "elm-webpack-loader": "^4.5.0",

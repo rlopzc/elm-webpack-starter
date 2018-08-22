@@ -3,6 +3,7 @@ module Page.About exposing (Model, Msg, init, update, view)
 import Html exposing (Html, div, h2, text)
 
 
+
 -- MODEL --
 
 
