@@ -44,7 +44,7 @@ module.exports = () => ({
     }),
 
     new CopyWebpackPlugin([
-      { from: 'src/static/img', to: 'static/img' },
+      { from: 'src/assets/images', to: 'assets/images' },
     ]),
 
     new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),

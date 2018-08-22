@@ -1,25 +1,48 @@
-module Page.About exposing (Model, Msg, init, update, view)
+module Page.About exposing (Model, Msg, init, subscriptions, toSession, update, view)
 
 import Html exposing (Html, div, h2, text)
+import Html.Attributes exposing (class)
+import Session exposing (Session)
 
 
 
--- MODEL --
+-- MODEL
 
 
 type alias Model =
-    { pageTitle : String
+    { session : Session
+    , pageTitle : String
     , pageBody : String
     }
 
 
-init : Model
-init =
-    Model "About" "This is the aboutpage"
+init : Session -> ( Model, Cmd Msg )
+init session =
+    ( { session = session
+      , pageTitle = "About"
+      , pageBody = "This is the about page"
+      }
+    , Cmd.none
+    )
 
 
 
--- UPDATE --
+-- VIEW
+
+
+view : Model -> { title : String, content : Html Msg }
+view model =
+    { title = model.pageTitle
+    , content =
+        div [ class "container" ]
+            [ h2 [] [ text model.pageTitle ]
+            , div [] [ text model.pageBody ]
+            ]
+    }
+
+
+
+-- UPDATE
 
 
 type Msg
@@ -34,12 +57,18 @@ update msg model =
 
 
 
--- VIEW --
+-- SUBSCRIPTIONS
 
 
-view : Model -> Html Msg
-view model =
-    div []
-        [ h2 [] [ text model.pageTitle ]
-        , div [] [ text model.pageBody ]
-        ]
+subscriptions : Model -> Sub Msg
+subscriptions _ =
+    Sub.none
+
+
+
+-- EXPORT
+
+
+toSession : Model -> Session
+toSession model =
+    model.session

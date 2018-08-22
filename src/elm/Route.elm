@@ -1,9 +1,10 @@
-module Route exposing (Route(..), fromLocation, href, modifyUrl)
+module Route exposing (Route(..), fromUrl, href, replaceUrl)
 
+import Browser.Navigation as Nav
 import Html exposing (Attribute)
 import Html.Attributes as Attr
-import Navigation exposing (Location)
-import UrlParser as Url exposing (Parser, oneOf, parseHash, s)
+import Url exposing (Url)
+import Url.Parser as Parser exposing ((</>), Parser, oneOf, s, string)
 
 
 
@@ -12,6 +13,7 @@ import UrlParser as Url exposing (Parser, oneOf, parseHash, s)
 
 type Route
     = Home
+    | Root
     | About
 
 
@@ -20,37 +22,15 @@ type Route
 --   | Item String
 
 
-routeMatcher : Parser (Route -> a) a
-routeMatcher =
+parser : Parser (Route -> a) a
+parser =
     oneOf
-        [ Url.map Home (s "")
-        , Url.map About (s "about")
+        [ Parser.map Home Parser.top
+        , Parser.map About (s "about")
 
         --    When needing parameters on the form base/item/3
-        --    , Url.map Item (s "item" </> string)
+        --    , Parser.map Item (s "item" </> string)
         ]
-
-
-
--- INTERNAL --
-
-
-routeToString : Route -> String
-routeToString page =
-    let
-        pagePath =
-            case page of
-                Home ->
-                    []
-
-                About ->
-                    [ "about" ]
-
-        --    When needing parameters on the form base/item/3
-        --                    Item id ->
-        --                    [ "item",  id ]
-    in
-    "#/" ++ String.join "/" pagePath
 
 
 
@@ -62,15 +42,37 @@ href route =
     Attr.href (routeToString route)
 
 
-modifyUrl : Route -> Cmd msg
-modifyUrl =
-    routeToString >> Navigation.modifyUrl
+replaceUrl : Nav.Key -> Route -> Cmd msg
+replaceUrl key route =
+    Nav.replaceUrl key (routeToString route)
 
 
-fromLocation : Location -> Maybe Route
-fromLocation location =
-    if String.isEmpty location.hash then
-        Just Home
+fromUrl : Url -> Maybe Route
+fromUrl url =
+    { url | path = Maybe.withDefault "" url.fragment, fragment = Nothing }
+        |> Parser.parse parser
 
-    else
-        parseHash routeMatcher location
+
+
+-- INTERNAL --
+
+
+routeToString : Route -> String
+routeToString page =
+    let
+        pieces =
+            case page of
+                Home ->
+                    []
+
+                Root ->
+                    []
+
+                About ->
+                    [ "about" ]
+
+        --    When needing parameters on the form base/item/3
+        --                    Item id ->
+        --                    [ "item",  id ]
+    in
+    "#/" ++ String.join "/" pieces
