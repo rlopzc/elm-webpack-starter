@@ -16,10 +16,10 @@
     "prod": "npm run webpack -- --env.mode production",
     "prod:analyze": "npm run prod -- --env.presets analyze",
     "prod:compress": "npm run prod -- --env.presets compress",
-    "dev": "webpack-dashboard --title 'Elm Dev Server' -- npm run webpack-dev-server -- --env.mode development --hot",
+    "dev": "webpack-dashboard --title 'Elm Dev Server' -- npm run webpack-dev-server -- --env.mode development",
     "elm-analyse": "elm-analyse -s -o",
     "preprod": "rimraf dist",
-    "lint": "stylelint src/static/styles"
+    "lint": "stylelint src/assets/styles"
   },
   "license": "MIT",
   "browserslist": [
@@ -33,8 +33,8 @@
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^1.0.0",
     "elm-analyse": "^0.15.0",
-    "elm-hot-loader": "^0.5.4",
-    "elm-webpack-loader": "^4.5.0",
+    "elm-hot-webpack-loader": "^1.0.0",
+    "elm-webpack-loader": "^5.0.0",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.0.6",
     "imagemin-webpack-plugin": "^2.1.5",

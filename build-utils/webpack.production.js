@@ -33,7 +33,7 @@ module.exports = () => ({
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'static/css/[name].[hash].css',
+      filename: 'assets/css/[name].[hash].css',
       chunkFilename: '[id].[hash].css',
     }),
 
@@ -52,6 +52,16 @@ module.exports = () => ({
     new UglifyJsPlugin({
       cache: true,
       parallel: true,
+      uglifyOptions: {
+        compress: {
+          pure_funcs: ['F2','F3','F4','F5','F6','F7','F8','F9','A2','A3','A4','A5','A6','A7','A8','A9'],
+          pure_getters: true,
+          keep_fargs: false,
+          unsafe_comps: true,
+          unsafe: true,
+          passes: 3,
+        },
+      },
     }),
 
     new OptimizeCSSAssetsPlugin()

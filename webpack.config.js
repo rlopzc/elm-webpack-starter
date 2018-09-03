@@ -25,14 +25,14 @@ module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
         rules: [
           {
             test: /\.(eot|ttf|woff|woff2|svg)$/,
-            use: 'file-loader?publicPath=../../&name=static/css/[hash].[ext]',
+            use: 'file-loader?publicPath=../../&name=assets/css/[hash].[ext]',
           },
         ]
       },
 
       plugins: [
         new HtmlWebpackPlugin({
-          template: 'src/static/index.html',
+          template: 'src/assets/index.html',
           inject: 'body',
           filename: 'index.html',
         }),
@@ -47,7 +47,7 @@ module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
         new StyleLintPlugin(),
 
         new CopyWebpackPlugin([
-          { from: 'src/static/favicon.ico' }
+          { from: 'src/assets/favicon.ico' }
         ]),
       ]
     },
