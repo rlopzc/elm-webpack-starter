@@ -3,11 +3,15 @@
 ### About:
 A Webpack 4 setup for writing [Elm](http://elm-lang.org/) apps:
 
-* Dev server with live reloading, using HMR
+* Webpack dev server
+  * Live reloading not working yet because this template uses `Browser.application`,
+  see [here](https://github.com/klazuka/elm-hot-webpack-loader#caveats).
+  Will wait for another elm hot loader to appear
 * [Webpack dashboard](https://github.com/FormidableLabs/webpack-dashboard) to have more info about the dev-server
 * [Elm Analyse](https://github.com/stil4m/elm-analyse). Tool to identify Elm code deficiencies and best practices
 * Support assets
   * Images
+    * Compression of images copied by `copy-webpack-plugin`
   * CSS/SCSS
     * PostCSS with Autoprefixer
     * [PurifyCSS](https://github.com/purifycss/purifycss) to remove unused CSS
@@ -25,6 +29,7 @@ A Webpack 4 setup for writing [Elm](http://elm-lang.org/) apps:
 ### Requirements:
 - [Yarn](https://yarnpkg.com/lang/en/docs/install/)
 - Node >= v6.11
+- [Elm](https://guide.elm-lang.org/install.html)
 
 ### Install:
 
@@ -42,16 +47,17 @@ git add .
 git commit -m 'initial commit'
 ```
 
-Install all dependencies using the handy `reinstall` script:
+Install all dependencies using this commands:
 ```
-yarn reinstall
+yarn install
+elm-package install
 ```
-*This does a clean (re)install of all npm and elm packages, plus a global elm install.*
+*This does a clean install of all npm and elm packages.*
 
 
 ### Serve locally:
 ```sh
-yarn start
+yarn dev
 ```
 * Access app at `http://localhost:8080/`
 * Get coding! The entry point file is `src/elm/Main.elm`
@@ -64,22 +70,27 @@ yarn elm-analyse
 * Access the web client at `http://localhost:3000`
 
 ### Build & bundle for production:
+
+There are presets related to production.
+Presets:
+  - `compress`: Use WebpackCompressionPlugin
+  - `analyze`:  Use WebpackBundleAnalyzer
+
+```sh
+yarn prod
+yarn prod:<preset> # <- This is the pattern for the presets, defined in package.json
+yarn prod:compress
+yarn prod:analyze
 ```
-yarn build
-```
+You can add your own presets to test functionality without breaking the working build.
 
 * Files are saved into the `/dist` folder
 * To check it, open `dist/index.html`
-* It will also prepare the assets by compressing the files with gzip.
 
 ### Contributing
 - PR's welcome :)
 
 ### Notes
 * This webpack template was heavily inspired in the Elm Community [elm-webpack-starter](https://github.com/elm-community/elm-webpack-starter).
+* The webpack build-utils and preset pattern was taken from the FrontendMasters course [Webpack fundamentals](https://frontendmasters.com/courses/webpack-fundamentals/)
 * If jQuery not needed, delete Popper.js and jQuery from webpack.config.js
-
-### Changelog
-
-**Ver 0.0.1**
-* Initial commit

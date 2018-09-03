@@ -1,40 +1,47 @@
 module Main exposing (main)
 
-import Html exposing (Html, div, h1, h5, text, button)
+import Browser
+import Html exposing (Html, button, div, text)
 import Html.Events exposing (onClick)
 
 
--- MODEL --
+main =
+    Browser.sandbox { init = init, update = update, view = view }
+
+
+
+-- MODEL
 
 
 type alias Model =
     Int
 
 
-model : Model
-model =
+init : Model
+init =
     0
 
 
 
--- VIEW --
+-- VIEW
 
 
 view : Model -> Html Msg
 view model =
     div []
-        [ h1 [] [ text "Counter example" ]
-        , h5 [] [ text <| "Current value: " ++ (toString model) ]
-        , button [ onClick Increment ] [ text "Increment" ]
+        [ button [ onClick Decrement ] [ text "-" ]
+        , div [] [ text (String.fromInt model) ]
+        , button [ onClick Increment ] [ text "+" ]
         ]
 
 
 
--- UPDATE --
+-- UPDATE
 
 
 type Msg
     = Increment
+    | Decrement
 
 
 update : Msg -> Model -> Model
@@ -43,6 +50,5 @@ update msg model =
         Increment ->
             model + 1
 
-
-main =
-    Html.beginnerProgram { model = model, view = view, update = update }
+        Decrement ->
+            model - 1

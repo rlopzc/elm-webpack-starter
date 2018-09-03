@@ -1,205 +1,211 @@
 module Main exposing (main)
 
-import Html exposing (Html)
-import Json.Decode exposing (Value)
-import Navigation exposing (Location)
+import Browser exposing (Document)
+import Browser.Navigation as Nav
+import Html exposing (..)
+import Json.Decode as Decode exposing (Value)
+import Page exposing (Page)
 import Page.About as About
-import Page.Error as Error exposing (PageLoadError)
+import Page.Blank as Blank
 import Page.Home as Home
 import Page.NotFound as NotFound
 import Route exposing (Route)
+import Session exposing (Session)
 import Task
-import Util exposing ((=>))
-import View.Page as Page exposing (ActivePage)
+import Url exposing (Url)
 
 
-type Page
-    = Blank
-    | NotFound
-    | Error PageLoadError
+
+-- WARNING: Based on discussions around how asset management features
+-- like code splitting and lazy loading have been shaping up, I expect
+-- most of this file to become unnecessary in a future release of Elm.
+-- Avoid putting things in here unless there is no alternative!
+--
+-- MODEL
+
+
+type Model
+    = Redirect Session
+    | NotFound Session
     | Home Home.Model
     | About About.Model
 
 
-type PageState
-    = Loaded Page
-    | TransitioningFrom Page
+init : Value -> Url -> Nav.Key -> ( Model, Cmd Msg )
+init _ url navKey =
+    changeRouteTo (Route.fromUrl url)
+        (Redirect (Session.fromViewer navKey))
 
 
 
--- MODEL --
+-- VIEW
 
 
-type alias Model =
-    { pageState : PageState
-    }
-
-
-
--- VIEW --
-
-
-view : Model -> Html Msg
+view : Model -> Document Msg
 view model =
-    case model.pageState of
-        Loaded page ->
-            viewPage False page
-
-        TransitioningFrom page ->
-            viewPage True page
-
-
-viewPage : Bool -> Page -> Html Msg
-viewPage isLoading page =
     let
-        layout =
-            Page.layout isLoading
+        viewPage page toMsg config =
+            let
+                { title, body } =
+                    Page.view page config
+            in
+            { title = title
+            , body = List.map (Html.map toMsg) body
+            }
     in
-    case page of
-        NotFound ->
-            layout Page.Other NotFound.view
+    case model of
+        Redirect _ ->
+            viewPage Page.Other (\_ -> Ignored) Blank.view
 
-        Blank ->
-            -- This is for the very intial page load, while we are loading
-            -- data via HTTP. We could also render a spinner here.
-            Html.text ""
-                |> layout Page.Other
+        NotFound _ ->
+            viewPage Page.Other (\_ -> Ignored) NotFound.view
 
-        Error subModel ->
-            Error.view subModel
-                |> layout Page.Other
+        Home home ->
+            viewPage Page.Home GotHomeMsg (Home.view home)
 
-        Home subModel ->
-            Home.view subModel
-                |> layout Page.Home
-                |> Html.map HomeMsg
-
-        About subModel ->
-            About.view subModel
-                |> layout Page.About
-                |> Html.map AboutMsg
+        About about ->
+            viewPage Page.About GotAboutMsg (About.view about)
 
 
 
--- UPDATE --
+-- UPDATE
 
 
 type Msg
-    = SetRoute (Maybe Route)
-    | HomeMsg Home.Msg
-    | AboutMsg About.Msg
+    = Ignored
+    | ChangedRoute (Maybe Route)
+    | ChangedUrl Url
+    | ClickedLink Browser.UrlRequest
+    | GotHomeMsg Home.Msg
+    | GotAboutMsg About.Msg
 
 
-setRoute : Maybe Route -> Model -> ( Model, Cmd Msg )
-setRoute route model =
+toSession : Model -> Session
+toSession page =
+    case page of
+        Redirect session ->
+            session
+
+        NotFound session ->
+            session
+
+        Home home ->
+            Home.toSession home
+
+        About about ->
+            About.toSession about
+
+
+changeRouteTo : Maybe Route -> Model -> ( Model, Cmd Msg )
+changeRouteTo maybeRoute model =
     let
-        transition toMsg task =
-            { model | pageState = TransitioningFrom (getPage model.pageState) }
-                => Task.attempt toMsg task
-
-        errored =
-            pageError model
+        session =
+            toSession model
     in
-    case route of
+    case maybeRoute of
         Nothing ->
-            ( { model | pageState = Loaded NotFound }, Cmd.none )
+            ( NotFound session, Cmd.none )
+
+        Just Route.Root ->
+            ( model, Route.replaceUrl (Session.navKey session) Route.Home )
 
         Just Route.Home ->
-            ( { model | pageState = Loaded (Home Home.init) }, Cmd.none )
+            Home.init session
+                |> updateWith Home GotHomeMsg model
 
         Just Route.About ->
-            ( { model | pageState = Loaded (About About.init) }, Cmd.none )
-
-
-pageError : Model -> ActivePage -> String -> ( Model, Cmd msg )
-pageError model activePage errorMessage =
-    let
-        error =
-            Error.pageLoadError activePage errorMessage
-    in
-    { model | pageState = Loaded (Error error) } => Cmd.none
+            About.init session
+                |> updateWith About GotAboutMsg model
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    updatePage (getPage model.pageState) msg model
+    case ( msg, model ) of
+        ( Ignored, _ ) ->
+            ( model, Cmd.none )
 
+        ( ClickedLink urlRequest, _ ) ->
+            case urlRequest of
+                Browser.Internal url ->
+                    case url.fragment of
+                        Nothing ->
+                            -- If we got a link that didn't include a fragment,
+                            -- it's from one of those (href "") attributes that
+                            -- we have to include to make the RealWorld CSS work.
+                            --
+                            -- In an application doing path routing instead of
+                            -- fragment-based routing, this entire
+                            -- `case url.fragment of` expression this comment
+                            -- is inside would be unnecessary.
+                            ( model, Cmd.none )
 
-getPage : PageState -> Page
-getPage pageState =
-    case pageState of
-        Loaded page ->
-            page
+                        Just _ ->
+                            ( model
+                            , Nav.pushUrl (Session.navKey (toSession model)) (Url.toString url)
+                            )
 
-        TransitioningFrom page ->
-            page
+                Browser.External href ->
+                    ( model
+                    , Nav.load href
+                    )
 
+        ( ChangedUrl url, _ ) ->
+            changeRouteTo (Route.fromUrl url) model
 
-updatePage : Page -> Msg -> Model -> ( Model, Cmd Msg )
-updatePage page msg model =
-    let
-        toPage toModel toMsg subUpdate subMsg subModel =
-            let
-                ( newModel, newCmd ) =
-                    subUpdate subMsg subModel
-            in
-            ( { model | pageState = Loaded (toModel newModel) }, Cmd.map toMsg newCmd )
+        ( ChangedRoute route, _ ) ->
+            changeRouteTo route model
 
-        errored =
-            pageError model
-    in
-    case ( msg, page ) of
-        -- Update for page transitions
-        ( SetRoute route, _ ) ->
-            setRoute route model
+        ( GotHomeMsg subMsg, Home home ) ->
+            Home.update subMsg home
+                |> updateWith Home GotHomeMsg model
 
-        -- Update for page specfic msgs
-        ( HomeMsg subMsg, Home subModel ) ->
-            toPage Home HomeMsg Home.update subMsg subModel
-
-        ( AboutMsg subMsg, About subModel ) ->
-            toPage About AboutMsg About.update subMsg subModel
-
-        ( _, NotFound ) ->
-            -- Disregard incoming messages when we're on the
-            -- NotFound page.
-            model => Cmd.none
+        ( GotAboutMsg subMsg, About about ) ->
+            About.update subMsg about
+                |> updateWith About GotAboutMsg model
 
         ( _, _ ) ->
-            -- Disregard incoming messages that arrived for the wrong page
-            model => Cmd.none
+            -- Disregard messages that arrived for the wrong page.
+            ( model, Cmd.none )
+
+
+updateWith : (subModel -> Model) -> (subMsg -> Msg) -> Model -> ( subModel, Cmd subMsg ) -> ( Model, Cmd Msg )
+updateWith toModel toMsg model ( subModel, subCmd ) =
+    ( toModel subModel
+    , Cmd.map toMsg subCmd
+    )
 
 
 
--- SUBSCRIPTIONS --
+-- SUBSCRIPTIONS
 
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.none
+    case model of
+        NotFound _ ->
+            Sub.none
+
+        Redirect _ ->
+            Sub.none
+
+        Home home ->
+            Sub.map GotHomeMsg (Home.subscriptions home)
+
+        About about ->
+            Sub.map GotAboutMsg (About.subscriptions about)
 
 
 
--- PROGRAM --
-
-
-initialPage : Page
-initialPage =
-    Blank
-
-
-init : Value -> Location -> ( Model, Cmd Msg )
-init val location =
-    setRoute (Route.fromLocation location)
-        { pageState = Loaded initialPage
-        }
+-- MAIN
 
 
 main : Program Value Model Msg
 main =
-    Navigation.programWithFlags (Route.fromLocation >> SetRoute)
+    Browser.application
         { init = init
-        , view = view
-        , update = update
+        , onUrlChange = ChangedUrl
+        , onUrlRequest = ClickedLink
         , subscriptions = subscriptions
+        , update = update
+        , view = view
         }
