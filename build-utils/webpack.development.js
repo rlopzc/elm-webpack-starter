@@ -1,12 +1,8 @@
 const path = require("path");
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const webpack = require('webpack');
 
 module.exports = () => ({
-  entry: [
-    'webpack-dev-server/client?http://localhost:8080',
-    path.join(__dirname, '../src/index.js')
-  ],
-
   module: {
     rules: [
       {
@@ -14,13 +10,9 @@ module.exports = () => ({
         exclude: [/elm-stuff/, /node_modules/],
         use: [
           {
-            loader: 'elm-hot-loader'
-          },
-          {
             loader: 'elm-webpack-loader',
             options: {
-              verbose: true,
-              warn: true,
+              cwd: path.join(__dirname, '../'),
               debug: true
             }
           }
@@ -35,12 +27,14 @@ module.exports = () => ({
 
   plugins: [
     new DashboardPlugin(),
+
+    new webpack.HotModuleReplacementPlugin(),
   ],
 
   devServer: {
     historyApiFallback: true,
-    contentBase: './src',
     inline: true,
     stats: 'errors-only',
+    hot: true
   }
 });
