@@ -1,6 +1,5 @@
 const path = require("path");
 const DashboardPlugin = require('webpack-dashboard/plugin');
-const webpack = require('webpack');
 
 module.exports = () => ({
   module: {
@@ -27,8 +26,6 @@ module.exports = () => ({
 
   plugins: [
     new DashboardPlugin(),
-
-    new webpack.HotModuleReplacementPlugin(),
   ],
 
   devServer: {
@@ -36,6 +33,5 @@ module.exports = () => ({
     historyApiFallback: true,
     inline: true,
     stats: 'errors-only',
-    hot: true
   }
 });
