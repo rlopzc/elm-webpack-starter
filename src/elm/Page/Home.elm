@@ -14,7 +14,6 @@ type alias Model =
     { session : Session
     , pageTitle : String
     , pageBody : String
-    , counter : Int
     }
 
 
@@ -23,7 +22,6 @@ init session =
     ( { session = session
       , pageTitle = "Home"
       , pageBody = "This is the home page"
-      , counter = 0
       }
     , Cmd.none
     )
@@ -38,9 +36,8 @@ view model =
     { title = model.pageTitle
     , content =
         div [ class "container" ]
-            [ h2 [ onClick Todo ] [ text model.pageTitle ]
-            , div [] [ text (model.pageBody ++ "  asd  asdasd") ]
-            , p [] [ text (String.fromInt model.counter) ]
+            [ h2 [] [ text model.pageTitle ]
+            , div [] [ text model.pageBody ]
             ]
     }
 
@@ -57,8 +54,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Todo ->
-            -- Test HMR
-            ( { model | counter = model.counter + 1 }, Cmd.none )
+            ( model, Cmd.none )
 
 
 

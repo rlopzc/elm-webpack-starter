@@ -7,6 +7,4 @@ require('bootstrap'); //Delete this if you don't need Bootstrap
 
 // Elm
 const { Elm } = require('./elm/Main.elm');
-Elm.Main.init({
-  node: document.getElementById('main')
-});
+Elm.Main.init({});
