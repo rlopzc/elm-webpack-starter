@@ -3,10 +3,7 @@
 ### About:
 A Webpack 4 setup for writing [Elm](http://elm-lang.org/) apps:
 
-* Webpack dev server
-  * Live reloading not working yet because this template uses `Browser.application`,
-  see [here](https://github.com/klazuka/elm-hot-webpack-loader#caveats).
-  Will wait for another elm hot loader to appear
+* Webpack dev server with [Elm Hot Loader](https://github.com/klazuka/elm-hot-webpack-loader).
 * [Webpack dashboard](https://github.com/FormidableLabs/webpack-dashboard) to have more info about the dev-server
 * [Elm Analyse](https://github.com/stil4m/elm-analyse). Tool to identify Elm code deficiencies and best practices
 * Support assets
