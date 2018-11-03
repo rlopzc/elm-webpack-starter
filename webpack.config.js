@@ -1,4 +1,4 @@
-const webpack = require('webpack');
+const path = require('path');
 const webpackMerge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -14,10 +14,9 @@ module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
     {
       mode,
 
-      resolve: {
-        alias: { // Delete this if you don't need jQuery
-          jquery: 'jquery/dist/jquery.min.js'
-        }
+      entry: {
+        main: path.join(__dirname, './src/index.js'),
+        vendor: path.join(__dirname, './src/assets/js/vendor.js'),
       },
 
       module: {
@@ -35,13 +34,6 @@ module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
           template: 'src/assets/index.html',
           inject: 'body',
           filename: 'index.html',
-        }),
-
-        new webpack.ProvidePlugin({ //Delete this plugin if you don't need jQuery/Bootstrap
-          $: 'jquery',
-          jQuery: 'jquery',
-          'window.jQuery': 'jquery',
-          Popper: 'popper',
         }),
 
         new StyleLintPlugin(),
