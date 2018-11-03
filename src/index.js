@@ -6,5 +6,5 @@ require('./assets/styles/main.scss');
 require('bootstrap'); //Delete this if you don't need Bootstrap
 
 // Elm
-const { Elm } = require('./elm/Main.elm');
+var Elm = require('./elm/Main.elm').Elm;
 Elm.Main.init({});
