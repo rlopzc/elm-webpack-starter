@@ -19,16 +19,6 @@ module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
         vendor: path.join(__dirname, './src/assets/js/vendor.js'),
       },
 
-      module: {
-        noParse: /\.elm$/,
-        rules: [
-          {
-            test: /\.(eot|ttf|woff|woff2|svg)$/,
-            use: 'file-loader?publicPath=../../&name=assets/css/[hash].[ext]',
-          },
-        ]
-      },
-
       plugins: [
         new HtmlWebpackPlugin({
           template: 'src/assets/index.html',
