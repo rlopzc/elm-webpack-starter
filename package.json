@@ -35,7 +35,6 @@
     "elm-analyse": "^0.15.0",
     "elm-hot-webpack-loader": "^1.0.1",
     "elm-webpack-loader": "^5.0.0",
-    "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.0.6",
     "imagemin-webpack-plugin": "^2.3.0",
     "jquery": "^3.3.1",
