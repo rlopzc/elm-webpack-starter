@@ -1,9 +1,9 @@
 module Page exposing (Page(..), view)
 
 import Browser exposing (Document)
-import Html exposing (Html, a, button, div, footer, i, img, li, nav, p, span, text, ul)
-import Html.Attributes exposing (class, classList, href, style)
-import Html.Events exposing (onClick)
+import Html exposing (..)
+import Html.Attributes exposing (..)
+import Html.Events exposing (..)
 import Route exposing (Route)
 
 
