@@ -2,7 +2,7 @@ const path = require('path');
 const glob = require('glob');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -39,9 +39,11 @@ module.exports = () => ({
   optimization: {
     minimizer: [
       // https://elm-lang.org/0.19.0/optimize
-      new UglifyJsPlugin({
+      new TerserPlugin({
         cache: true,
-        uglifyOptions: {
+        parallel: true,
+        terserOptions: {
+          mangle: false,
           compress: {
             pure_funcs: ['F2','F3','F4','F5','F6','F7','F8','F9','A2','A3','A4','A5','A6','A7','A8','A9'],
             pure_getters: true,
@@ -49,14 +51,12 @@ module.exports = () => ({
             unsafe_comps: true,
             unsafe: true,
           },
-          mangle: false,
         },
       }),
-      new UglifyJsPlugin({
+      new TerserPlugin({
         cache: true,
-        uglifyOptions: {
-          mangle: true,
-        },
+        parallel: true,
+        terserOptions: { mangle: true },
       }),
     ],
   },
