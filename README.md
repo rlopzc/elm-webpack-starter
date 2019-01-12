@@ -6,7 +6,7 @@
 
 A Webpack 4 setup for writing [Elm](http://elm-lang.org/) apps:
 
-* Webpack optimized Elm production code with UglifyJS [Here](https://github.com/romariolopezc/elm-webpack-4-starter/blob/master/build-utils/webpack.production.js#L41)
+* Webpack optimized Elm production code with TerserJS [Here](https://github.com/romariolopezc/elm-webpack-4-starter/blob/master/build-utils/webpack.production.js#L41)
 * Webpack dev server with [Elm Hot Loader](https://github.com/klazuka/elm-hot-webpack-loader).
 * [Webpack dashboard](https://github.com/FormidableLabs/webpack-dashboard) to have more info about the dev-server
 * [Elm Analyse](https://github.com/stil4m/elm-analyse). Tool to identify Elm code deficiencies and best practices
@@ -17,7 +17,7 @@ A Webpack 4 setup for writing [Elm](http://elm-lang.org/) apps:
     * PostCSS with Autoprefixer with Autoprefixer support for the latest Browsers (defined in `package.json`)
     * [PurifyCSS](https://github.com/purifycss/purifycss) to remove unused CSS
     * CSS minification
-* Bootstrap 4.1 (Sass version)
+* Bootstrap 4 (Sass version)
 * Bundling and minification for deployment with [compressed version of assets](https://github.com/webpack-contrib/compression-webpack-plugin) (gzip)
 * Examples (examples/)
   * Hello world
@@ -104,6 +104,10 @@ You can add your own presets to test functionality without breaking the working 
 ## Deploying the App
 
 To deploy our app, we are going to use the free service (for personal use) [Netlify](https://www.netlify.com/)
+
+You can automatically deploy this template with this button
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/romariolopezc/elm-webpack-4-starter)
 
 ### Features on Netlify
 
