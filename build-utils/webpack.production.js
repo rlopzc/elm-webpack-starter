@@ -74,7 +74,10 @@ module.exports = () => ({
       { from: 'src/assets/images', to: 'assets/images' },
     ]),
 
-    new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
+    new ImageminPlugin({
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      cache: true,
+    }),
 
     new OptimizeCSSAssetsPlugin()
   ]
