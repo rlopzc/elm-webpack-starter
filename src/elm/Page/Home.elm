@@ -1,7 +1,8 @@
 module Page.Home exposing (Model, Msg, init, subscriptions, toSession, update, view)
 
-import Html exposing (Html, div, h2, text)
+import Html exposing (Html, button, div, h2, h5, hr, p, text)
 import Html.Attributes exposing (class)
+import Html.Events exposing (onClick)
 import Session exposing (Session)
 
 
@@ -13,6 +14,7 @@ type alias Model =
     { session : Session
     , pageTitle : String
     , pageBody : String
+    , counter : Int
     }
 
 
@@ -21,6 +23,7 @@ init session =
     ( { session = session
       , pageTitle = "Home"
       , pageBody = "This is the home page"
+      , counter = 0
       }
     , Cmd.none
     )
@@ -37,6 +40,13 @@ view model =
         div [ class "container" ]
             [ h2 [] [ text model.pageTitle ]
             , div [] [ text model.pageBody ]
+            , hr [] []
+            , h5 [] [ text "Counter" ]
+            , p []
+                [ text (String.fromInt model.counter)
+                ]
+            , button [ onClick IncreaseCounter ] [ text "+" ]
+            , button [ onClick DecreaseCounter ] [ text "-" ]
             ]
     }
 
@@ -46,14 +56,18 @@ view model =
 
 
 type Msg
-    = Todo
+    = IncreaseCounter
+    | DecreaseCounter
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Todo ->
-            ( model, Cmd.none )
+        IncreaseCounter ->
+            ( { model | counter = model.counter + 1 }, Cmd.none )
+
+        DecreaseCounter ->
+            ( { model | counter = model.counter - 1 }, Cmd.none )
 
 
 
