@@ -28,7 +28,7 @@ A Webpack 4 setup for writing [Elm](http://elm-lang.org/) apps:
 ## Requirements
 
 * [Yarn](https://yarnpkg.com/lang/en/docs/install/)
-* Node >= v6.11
+* Node >= v8.9.0
 * [Elm](https://guide.elm-lang.org/install.html)
 
 ## Install
@@ -147,5 +147,5 @@ PR's welcome :)
 ## Notes
 
 * This webpack template was heavily inspired in the Elm Community [elm-webpack-starter](https://github.com/elm-community/elm-webpack-starter).
-* The webpack build-utils and preset pattern was taken from the FrontendMasters course [Webpack fundamentals](https://frontendmasters.com/courses/webpack-fundamentals/)
-* If Bootstrap JS not needed, delete it from `src/assets/presets/vendor.js`
+* The webpack build-utils and preset pattern was taken from the FrontendMasters course [Webpack fundamentals](https://frontendmasters.com/courses/webpack-fundamentals/).
+* If Bootstrap JS not needed, delete it from the webpack entry in `webpack.config.js` and also delete the file `src/assets/js/vendor.js`.
