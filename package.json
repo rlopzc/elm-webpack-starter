@@ -51,7 +51,7 @@
     "stylelint-config-standard": "^18.3.0",
     "stylelint-webpack-plugin": "^0.10.4",
     "terser-webpack-plugin": "^1.3.0",
-    "webpack": "^4.37.0",
+    "webpack": "^4.38.0",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.6",
     "webpack-dashboard": "^3.0.7",
