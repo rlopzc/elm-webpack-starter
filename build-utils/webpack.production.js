@@ -9,7 +9,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = () => ({
   output: {
-    filename: '[name].[hash].js'
+    filename: '[name].[contenthash].js'
   },
 
   module: {
@@ -63,7 +63,7 @@ module.exports = () => ({
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'assets/css/[name].[hash].css',
+      filename: 'assets/css/[name].[contenthash].css',
     }),
 
     new PurgecssPlugin({
