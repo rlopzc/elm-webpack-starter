@@ -54,7 +54,7 @@
     "webpack": "^4.39.3",
     "webpack-bundle-analyzer": "^3.4.1",
     "webpack-cli": "^3.3.7",
-    "webpack-dashboard": "^3.0.7",
+    "webpack-dashboard": "^3.1.0",
     "webpack-dev-server": "^3.8.0",
     "webpack-merge": "^4.2.2"
   }
