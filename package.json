@@ -10,6 +10,9 @@
     "Romario Lopez <romariolopezc@gmail.com>",
     "Geoffrey Roguelon <geoffrey.roguelon@gmail.com>"
   ],
+  "engines": {
+    "node": ">=8.9.0"
+  },
   "scripts": {
     "webpack": "webpack",
     "webpack-dev-server": "webpack-dev-server",
