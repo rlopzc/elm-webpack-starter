@@ -10,6 +10,9 @@
     "Romario Lopez <romariolopezc@gmail.com>",
     "Geoffrey Roguelon <geoffrey.roguelon@gmail.com>"
   ],
+  "engines": {
+    "node": ">=8.9.0"
+  },
   "scripts": {
     "webpack": "webpack",
     "webpack-dev-server": "webpack-dev-server",
@@ -45,7 +48,7 @@
     "postcss-loader": "^3.0.0",
     "purgecss-webpack-plugin": "^1.5.0",
     "rimraf": "^3.0.0",
-    "sass-loader": "^7.3.1",
+    "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "stylelint": "^10.1.0",
     "stylelint-config-standard": "^18.3.0",
