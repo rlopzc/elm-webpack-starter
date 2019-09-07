@@ -40,8 +40,6 @@ module.exports = () => ({
     minimizer: [
       // https://elm-lang.org/0.19.0/optimize
       new TerserPlugin({
-        cache: true,
-        parallel: true,
         terserOptions: {
           mangle: false,
           compress: {
@@ -54,8 +52,6 @@ module.exports = () => ({
         },
       }),
       new TerserPlugin({
-        cache: true,
-        parallel: true,
         terserOptions: { mangle: true },
       }),
     ],
