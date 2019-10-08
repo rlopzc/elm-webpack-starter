@@ -8405,10 +8405,10 @@ stylelint-config-standard@^19.0.0:
   dependencies:
     stylelint-config-recommended "^3.0.0"
 
-stylelint-webpack-plugin@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/stylelint-webpack-plugin/-/stylelint-webpack-plugin-1.0.1.tgz#144a37fcc3e347f9edc89d7598460be1d302110a"
-  integrity sha512-xrfVdNxGJX8NQfu3PAmrMc+wkyZU1XAQlJvwSz4FK/FGA2OiLMi1+r8Q6OL0s1cE/DIPCFnaQZXqOeAiNoSutg==
+stylelint-webpack-plugin@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/stylelint-webpack-plugin/-/stylelint-webpack-plugin-1.0.2.tgz#51d106bc789d41dbe111d8d28def5c4826a05ef2"
+  integrity sha512-mlpjaHZxTGOvEqeKEIlAJex84KxtQJTNZcVp9lvhTltC2MBqzXxeuqRLqVWTM8bAKSt50GxLpUFsutAoQMffIA==
   dependencies:
     arrify "^2.0.1"
     micromatch "^4.0.2"
