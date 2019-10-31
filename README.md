@@ -2,6 +2,8 @@
 
 ### [Demo](https://elm-webpack-4-starter.netlify.com/)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/52572774-eddd-41c7-94ef-6dedddf46540/deploy-status)](https://app.netlify.com/sites/elm-webpack-4-starter/deploys)
+
 ## About
 
 A Webpack 4 setup for writing [Elm](http://elm-lang.org/) apps:
