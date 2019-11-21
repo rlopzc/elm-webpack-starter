@@ -2585,17 +2585,17 @@ elm-analyse@^0.16.5:
     sums "0.2.4"
     ws "3.3.1"
 
-elm-hot-webpack-loader@^1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/elm-hot-webpack-loader/-/elm-hot-webpack-loader-1.1.5.tgz#363f0a3353c396b0e57d3168e08356ecdc4e7ac1"
-  integrity sha512-BrmLFx0L5cdOXBuDHwl7Mjmd631JUabrV7EboyFeJQhO3tW5ZKjA3C8RRZZjTPjG1DFWM+OQskw2hh0/zN5uhg==
+elm-hot-webpack-loader@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/elm-hot-webpack-loader/-/elm-hot-webpack-loader-1.1.6.tgz#da4a17290e2d68e4c4c1b5946d15be928426d99d"
+  integrity sha512-fY+36uG8/h/PvlO2HZSXBa6qGNkVCwn+QjoL/5WWHOocf7EfYAYFgJlWQqsgNQi/eYO4/dt/OglRuSsFfkFvtA==
   dependencies:
-    elm-hot "^1.1.3"
+    elm-hot "^1.1.4"
 
-elm-hot@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/elm-hot/-/elm-hot-1.1.3.tgz#8f921ad44afc969933847376262f209e6330b3e2"
-  integrity sha512-d2TvJ/jgtYI4z0PmjDinjojJh+i//yJkCeLbC0Ik1UAKl474RV8vEHHC6Wy0DNrvwOIneikutyuGIppeMxeIWA==
+elm-hot@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/elm-hot/-/elm-hot-1.1.4.tgz#4984592b3554670255ea4e08f4e98aa9103ab51f"
+  integrity sha512-qPDP/o/Fkifriaxaf3E7hHFB5L6Ijihyg8is4A6xna6/h/zebUiNssbQrxywI2oxNUkr6W/leEu/WlIC1tmVnw==
 
 elm-webpack-loader@^6.0.1:
   version "6.0.1"
