@@ -30,7 +30,7 @@ A Webpack 4 setup for writing [Elm](http://elm-lang.org/) apps:
 ## Requirements
 
 * [Yarn](https://yarnpkg.com/lang/en/docs/install/)
-* Node >= v8.9.0
+* Node >= v10.19.0
 * Webpack >= 4.0.0
 * [Elm](https://guide.elm-lang.org/install.html)
 
