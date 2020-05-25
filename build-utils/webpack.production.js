@@ -40,6 +40,7 @@ module.exports = () => ({
     minimizer: [
       // https://elm-lang.org/0.19.0/optimize
       new TerserPlugin({
+        extractComments: false,
         terserOptions: {
           mangle: false,
           compress: {
@@ -52,6 +53,7 @@ module.exports = () => ({
         },
       }),
       new TerserPlugin({
+        extractComments: false,
         terserOptions: { mangle: true },
       }),
     ],
