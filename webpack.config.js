@@ -28,9 +28,11 @@ module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
 
         new StyleLintPlugin(),
 
-        new CopyWebpackPlugin([
-          { from: 'src/assets/favicon.ico' }
-        ]),
+        new CopyWebpackPlugin({
+          patterns: [
+            { from: 'src/assets/favicon.ico' }
+          ]
+        }),
       ]
     },
     modeConfig(mode),
