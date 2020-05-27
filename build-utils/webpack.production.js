@@ -68,9 +68,11 @@ module.exports = () => ({
       paths: glob.sync(path.join(__dirname, '../src/**/*.elm'), { nodir: true }),
     }),
 
-    new CopyWebpackPlugin([
-      { from: 'src/assets/images', to: 'assets/images' },
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        {from: 'src/assets/images', to: 'assets/images'},
+      ]
+    }),
 
     new ImageminPlugin({
       test: /\.(jpe?g|png|gif|svg)$/i,
