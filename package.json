@@ -30,7 +30,7 @@
     "last 2 versions"
   ],
   "devDependencies": {
-    "autoprefixer": "^9.8.2",
+    "autoprefixer": "^9.8.3",
     "bootstrap": "^4.5.0",
     "compression-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^6.0.2",
