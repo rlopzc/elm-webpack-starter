@@ -9322,11 +9322,12 @@ webpack-cli@^3.3.12:
     v8-compile-cache "^2.1.1"
     yargs "^13.3.2"
 
-webpack-dashboard@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/webpack-dashboard/-/webpack-dashboard-3.2.0.tgz#b8fc6215c76ffad66774375448f162892dc81bad"
-  integrity sha512-nRAJmmaWWHDqPiNmeQxBtkk/o6n1inp3qftUBIjbmm2d4w1rah7zpxmkv4qw4sGJbnzYGxMK/hmhBIELsh/Jog==
+webpack-dashboard@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/webpack-dashboard/-/webpack-dashboard-3.2.1.tgz#e6b8f4ec32423c01bcc9ebd81cb05d3c53393232"
+  integrity sha512-ICUKmMOiVEqCVMy9QH7uJwpiZ+neJinZBcyLlmKy7PFWgdDccqiyuZtPb56xAg4WQZ2zfhqiNnT/Ekiw5Kz8MQ==
   dependencies:
+    chalk "^2.0.0"
     commander "^2.15.1"
     cross-spawn "^6.0.5"
     filesize "^3.6.1"
