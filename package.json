@@ -32,7 +32,7 @@
   "devDependencies": {
     "autoprefixer": "^9.8.6",
     "bootstrap": "^4.5.3",
-    "compression-webpack-plugin": "^6.1.0",
+    "compression-webpack-plugin": "^6.1.1",
     "copy-webpack-plugin": "^6.3.0",
     "css-loader": "^5.0.1",
     "elm": "^0.19.1-3",
