@@ -47,7 +47,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "popper.js": "^1.16.1",
     "postcss-loader": "^3.0.0",
-    "purgecss-webpack-plugin": "^4.0.0",
+    "purgecss-webpack-plugin": "^4.0.2",
     "rimraf": "^3.0.2",
     "sass-loader": "^10.1.1",
     "style-loader": "^2.0.0",
