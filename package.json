@@ -34,7 +34,7 @@
     "bootstrap": "^4.6.0",
     "compression-webpack-plugin": "^6.1.1",
     "copy-webpack-plugin": "^6.4.1",
-    "css-loader": "^5.2.6",
+    "css-loader": "^5.2.7",
     "elm": "^0.19.1-5",
     "elm-analyse": "^0.16.5",
     "elm-hot-webpack-loader": "^1.1.8",
