@@ -31,7 +31,7 @@
   ],
   "devDependencies": {
     "autoprefixer": "^9.8.8",
-    "bootstrap": "^4.6.1",
+    "bootstrap": "^4.6.2",
     "compression-webpack-plugin": "^6.1.1",
     "copy-webpack-plugin": "^6.4.1",
     "css-loader": "^5.2.7",
